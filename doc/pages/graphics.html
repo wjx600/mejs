@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/jquery-1.8.2.min.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/lists.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <style>
+        .circleProgress_wrapper{
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            position: relative;
+            border:1px solid #ddd;
+        }
+
+        .wrapper{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            overflow: hidden;
+        }
+        .right{
+            right:0;
+        }
+        .left{
+            left:0;
+        }
+        .circleProgress{
+            width: 160px;
+            height: 160px;
+            border:20px solid rgb(232, 232, 12);
+            border-radius: 50%;
+            position: absolute;
+            top:0;
+            transform: rotate(45deg);
+        }
+        .rightcircle{
+            border-top:20px solid green;
+            border-right:20px solid green;
+            right:0;
+            animation: circleProgressLoad_right 5s linear;
+        }
+        .leftcircle{
+            border-bottom:20px solid green;
+            border-left:20px solid green;
+            left:0;
+            animation: circleProgressLoad_left 5s linear;
+        }
+        @-webkit-keyframes circleProgressLoad_right{
+            0%{
+                
+                -webkit-transform: rotate(45deg);
+            }
+            50%{
+                /*border-top:20px solid rgb(232, 232, 12);
+                border-right:20px solid rgb(232, 232, 12);
+                border-left:20px solid rgb(81, 197, 81);
+                border-bottom:20px solid rgb(81, 197, 81);*/
+                -webkit-transform: rotate(225deg);
+            }
+            100%{
+                /*border-left:20px solid green;
+                border-bottom:20px solid green;*/
+                -webkit-transform: rotate(225deg);
+            }
+        }
+        @-webkit-keyframes circleProgressLoad_left{
+            0%{
+                -webkit-transform: rotate(45deg);
+            }
+            50%{
+                /*border-bottom:20px solid rgb(232, 232, 12);
+                border-left:20px solid rgb(232, 232, 12);
+                border-top:20px solid rgb(81, 197, 81);
+                border-right:20px solid rgb(81, 197, 81);*/
+                -webkit-transform: rotate(45deg);
+            }
+            100%{
+                /*border-top:20px solid green;
+                border-right:20px solid green;
+                border-bottom:20px solid green;
+                border-left:20px solid green;*/
+                -webkit-transform: rotate(225deg);
+            }
+        }
+
+  </style>
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../api.html">meJS</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="ajax.html">API Docs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="jumbotron subhead">
+    <div class="container">
+      <h1>meJS
+        <small></small>
+      </h1>
+      <p class="lead"></p>
+    </div>
+  </header>
+
+  <div class="container content">
+
+    <div class="demo">
+      <div class="circleProgress_wrapper">
+        <div class="wrapper right">
+          <div class="circleProgress rightcircle"></div>
+        </div>
+        <div class="wrapper left">
+          <div class="circleProgress leftcircle"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</body>
+
+</html>

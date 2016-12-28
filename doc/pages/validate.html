@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/jquery-1.8.2.min.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/lists.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+
+</head>
+
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../api.html">meJS</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="ajax.html">API Docs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="jumbotron subhead">
+    <div class="container">
+      <h1>meJS
+        <small></small>
+      </h1>
+      <p class="lead"></p>
+    </div>
+  </header>
+
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav affix-top">
+          <!--<li>
+            <a href="#"><i class="icon-chevron-right"></i>meJS API索引</a>
+          </li>-->
+        </ul>
+        <!--<ul class="nav nav-list bs-docs-sidenav affix-top">
+          <li>
+            <a href="#custom"><i class="icon-chevron-right"></i>自定义</a>
+            <a href="#tel"><i class="icon-chevron-right"></i>电话号码</a>
+            <a href="#mobile"><i class="icon-chevron-right"></i>手机号</a>
+            <a href="#bankCard"><i class="icon-chevron-right"></i>银行卡</a>
+            <a href="#IDCard"><i class="icon-chevron-right"></i>身份证</a>
+            <a href="#chinese"><i class="icon-chevron-right"></i>中文</a>
+            <a href="#email"><i class="icon-chevron-right"></i>邮箱</a>
+            <a href="#money"><i class="icon-chevron-right"></i>金钱千分位</a>
+          </li>
+        </ul>-->
+
+      </div>
+      <div class="span9">
+        
+        <section class="page-title">
+          <h3 style="padding-top: 40px;">验证输出规范</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              </tr>
+              <tr>
+                <td>(直接返回)</td>
+                <td>Boolean 和 Null</td>
+                <td>验证结果,通过为true,否则false，空值和空格都返回Null</td>
+              </tr>
+              <tr>
+                <td colspan="3">如果第一个参数是str，并提供了返回这个str的验证结果，如果提供了 options,监听options.dom对象,并在input事件执行回调 options.cb</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="page-title">
+          <ul class="indexs">
+            <li>
+              <a href="#form">表单验证(综合)</a>
+            </li>
+            <li>
+              <a href="#custom">自定义</a>
+            </li>
+            <li>
+              <a href="#tel">电话号码</a>
+            </li>
+            <li>
+              <a href="#mobile">手机号</a>
+            </li>
+            <li>
+              <a href="#bankCard">银行卡</a>
+            </li>
+            <li>
+              <a href="#IDCard">身份证</a>
+            </li>
+            <li>
+              <a href="#chinese">中文</a>
+            </li>
+            <li>
+              <a href="#email">邮箱</a>
+            </li>
+            <li>
+              <a href="#money">金钱千分位</a>
+            </li>
+          </ul>
+        </section>
+        
+         <section id="form" class="page-title">
+           <h2 style="padding-top: 40px;">me.validate.form</h2>
+           <hr/>
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.form(opts)</p>
+          <p>用于表单内部验证</p>
+            <h3 style="padding-top: 40px;">参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>data-validate</td>
+                <td>页面规定的正则</td>
+                <td>at least (opts.reg | data-validate 属性)</td>
+                <td></td>
+                <td colspan="2">页面规定的正则，优先于opts.reg</td>
+              </tr>
+              <tr>
+                <td>opts</td>
+                <td>Object</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2"></td>
+              </tr>
+              <tr>
+                <td>opts.reg</td>
+                <td>默认的正则</td>
+                <td>是</td>
+                <td></td>
+                <td colspan="2">如果dom上没选择正则，则使用这个</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">要验证的表单元素</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre>//me.validate.form(opts)
+//使用内部自带的正则            
+&lt;input type="text" class="form-control" placeholder="中文名称" id="cnName" data-validate="chinese">
+//使用自定义正则
+&lt;input type="text" class="form-control" placeholder="英文名称" id="enName" data-validate="/^[a-zA-Z]{2,31}$/">
+//javascript  
+me.validate.form({
+    dom: $("input[data-validate]"),//可以是多个dom
+    cb: function (result,dom) {//dom 为当前验证的dom
+      if (result === false) {
+       //验证失败
+      }else if(result === null){
+       //空值  某些dom可选
+      }else {
+        //验证成功
+      }
+    }
+});</pre>
+         </section>
+        
+        <section id="custom" class="page-title">
+
+          <h2 style="padding-top: 40px;">me.validate.custom</h2>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.custom([str,]RegExp,[options])</p>
+          <p>使用自定义的正则验证字符串,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>RegExp</td>
+                <td>RegExp</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">正则表达式,/xxxx/ig 或者 new RegExp('')</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 id="exports_version" style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.custom([str,]RegExp,[options])
+//监听dom对象的input事件,验证dom的值,执行回调
+var a = me.validate.custom(/^\d+$/,{
+  dom: $('#txt1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+});
+
+//使用自定义正则验证字符串
+var a = me.validate.custom('2dfdsf5dfdsf4',/^\d+$/);
+
+//[很少用]初始化验证字符串,监听dom对象的input事件,验证值,执行回调
+var b = me.validate.custom('2dfdsf5dfdsf4', /^\d+$/,{
+  dom: $('#txt1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+});</pre>
+          </div>
+        </section>
+
+        <section id="tel">
+
+          <h2 style="padding-top: 40px;">me.validate.tel</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.tel([str,][options])</p>
+          <p>验证电话号码,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.tel([str],[options])
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.tel({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+})
+
+//仅验证电话号码
+me.validate.tel('010123456789')
+
+//[很少用]验证错误电话+绑定dom和回调
+var a = me.validate.tel('',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+        <section id="mobile">
+
+          <h2 style="padding-top: 40px;">me.validate.mobile</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.mobile([str,][options])</p>
+          <p>验证手机号,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.mobile([str,][options])
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.mobile({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+})
+
+//仅验证电话号码
+me.validate.mobile('010123456789')
+
+//[很少用]验证错误电话+绑定dom和回调
+me.validate.mobile('',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+        <section id="bankCard">
+
+          <h2 style="padding-top: 40px;">me.validate.bankCard</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.bankCard([str,][options])</p>
+          <p>验证 银行卡,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.bankCard([str,][options])
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.bankCard({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+});
+
+console.log('只验证15位银行卡-错误', me.validate.bankCard('123456789012345'));
+console.log('只验证16位银行卡-正确', me.validate.bankCard('1234567890123456'));
+console.log('只验证19位银行卡-正确', me.validate.bankCard('1234567890123456789'));
+console.log('只验证20位银行卡-错误', me.validate.bankCard('12345678901234567890'));
+
+//[很少用]验证银行卡+绑定dom和回调
+me.validate.bankCard('',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+        <section id="IDCard">
+
+          <h2 style="padding-top: 40px;">me.validate.IDCard</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.IDCard([str,][options])</p>
+          <p>验证 身份证,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.IDCard([str,][options])
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.IDCard({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+});
+
+console.log('14位身份证-错误', me.validate.IDCard('43262319890425'));
+console.log('19位身份证-错误', me.validate.IDCard('432623198904215730X'));
+console.log('15位身份证-正确', me.validate.IDCard('432623198904122'));
+console.log('18位身份证-正确', me.validate.IDCard('432623198904215734'));
+
+//[很少用]验证银行卡+绑定dom和回调
+me.validate.IDCard('342623000001011234',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+        <section id="chinese">
+
+          <h2 style="padding-top: 40px;">me.validate.chinese</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.chinese([str,][options])</p>
+          <p>验证中文,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.chinese([str,][options])
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.chinese({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+});
+
+console.log('全部中文-正确', me.validate.chinese('你好世界'));
+console.log('部分中文-错误', me.validate.chinese('你好world'));
+console.log('全部英文-错误', me.validate.chinese('helloworld'));
+
+//[很少用]验证银行卡+绑定dom和回调
+me.validate.chinese('世界你好',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+        <section id="email">
+
+          <h2 style="padding-top: 40px;">me.validate.email</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.email([str,][options])</p>
+          <p>验证 邮箱,支持监听输入框验证</p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>at least (str | options)</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.dom</td>
+                <td>jQuery 对象</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">jQuery对象,$('xxx')</td>
+              </tr>
+              <tr>
+                <td>options.cb</td>
+                <td>回调函数</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">dom的值修改后的回调函数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.email([str,][options])
+// /^[a-z0-9][a-z0-9._-]*@[a-z0-9_-]+(\.[a-z0-9_-]+)+$/i  腾讯qq的...
+//仅监听dom对象的input事件,验证dom的值,执行回调
+me.validate.email({
+  dom: $('#tel2'),
+  cb: function (result) {
+    console.log('tel2', result);
+  }
+});
+
+console.log('普通的-正确', me.validate.email('yyjazsf@live.cn'));
+console.log('@后面没点-错误', me.validate.email('602988068@com'));
+console.log('@前面有. @后面很多符号-正确', me.validate.email('yyj.zry@qq.w-w.c_om'));
+
+//[很少用]验证银行卡+绑定dom和回调
+me.validate.email('abc@qq.com',{
+  dom: $('#tel1'),
+  cb: function (result) {
+    console.log('tel1', result);
+  }
+})</pre>
+          </div>
+        </section>
+
+
+        <section id="money">
+
+          <h2 style="padding-top: 40px;">me.validate.money</h2>
+          <ul class="indexs">
+            <li>
+              <a href="">说明</a>
+            </li>
+            <li>
+              <a href="">输入参数</a>
+            </li>
+            <li>
+              <a href="">代码</a>
+            </li>
+          </ul>
+          <hr/>
+
+          <h3 style="padding-top: 40px;">说明</h3>
+          <p>me.validate.money([str,][options])</p>
+          <p>金钱千分位, <code>4321.12 -> 4,321.12</code></p>
+          <h3 style="padding-top: 40px;">输入参数</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>名称</td>
+                <td>类型</td>
+                <td>可选</td>
+                <td>默认值</td>
+                <td>描述</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>str</td>
+                <td>String</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">要验证的字符串</td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>Object</td>
+                <td>是</td>
+                <td></td>
+                <td colspan="2">{}类型的参数</td>
+              </tr>
+              <tr>
+                <td>options.decimal</td>
+                <td>Boolean</td>
+                <td>否</td>
+                <td></td>
+                <td colspan="2">是否强制保留2为小数</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="remark">at least (a | b)表示 a 和 b 至少提供一个</p>
+
+          <h3 style="padding-top: 40px;">代码</h3>
+          <div>
+            <pre>//me.validate.money(str,options)
+console.log('整数部分没4位', me.validate.money('100.123456'));
+console.log('全都超过3位', me.validate.money('1100.123456'));
+console.log('小数部分没4位', me.validate.money('123456132.02'));
+console.log('保留2位小数', me.validate.money('123456', {decimal: true});</pre>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="pull-right">
+        <a href="#">Back to top</a>
+      </p>
+      <ul class="footer-links">
+        <li><a href="#">..</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    $(function() {
+      $('pre').addClass('prettyprint');
+      $('td pre').removeClass('prettyprint');
+      prettyPrint();
+      var $window = $(window);
+      $('.bs-docs-sidenav').affix({
+        offset: {
+          top: function() {
+            return $window.width() <= 980 ? 290 : 210
+          },
+          bottom: 270
+        }
+      });
+      $(".content").find('h1, h2, h3, h4, h5, h6').each(function() {
+        var node = $(this);
+        if (!node.attr("id")) {
+          node.attr("id", "index_" + node.text());
+        }
+        node.css("paddingTop", 40);
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>
