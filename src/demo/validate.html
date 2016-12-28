@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="pragma" content="no-cache">
+  <title>验证</title>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+  <script src="js/Yue.js"></script>
+</head>
+<body>
+  <h3>手机号验证</h3>
+  <div title="手机号验证">
+
+    <label for="txt1">测试1</label>
+    <input type="text" id="txt1">
+    <br> <br>
+    <label for="txt2">测试2</label>
+    <input type="text" id="txt2">
+
+    <script>
+      //手机号
+      var a = Yue.validate.mobile('', {
+        dom: $('#txt1'),
+        cb: function (result) {
+          console.log('tel1', result);
+        }
+      });
+      console.log('验证错误手机号+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.mobile({
+        dom: $('#txt2'),
+        cb: function (result) {
+          console.log('tel2', result);
+        }
+      }));
+
+      console.log('只验证正确手机号', Yue.validate.mobile('18514472340'))
+    </script>
+
+  </div>
+
+  <h3>电话验证</h3>
+  <div title="电话验证">
+
+    <label for="tel1">测试1</label>
+    <input type="text" id="tel1">
+    <br> <br>
+    <label for="tel2">测试2</label>
+    <input type="text" id="tel2">
+
+    <script>
+      var a = Yue.validate.tel('',{
+        dom: $('#tel1'),
+        cb: function (result) {
+          console.log('tel1', result);
+        }
+      });
+      console.log('验证错误电话+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.tel({
+        dom: $('#tel2'),
+        cb: function (result) {
+          console.log('tel2', result);
+        }
+      }));
+
+      console.log('只验证正确电话', Yue.validate.tel('010123456789'))
+      console.log('只验证正确电话-带分机号', Yue.validate.tel('010-123456-1234',{extension:true}));
+    </script>
+
+  </div>
+
+  <h3>银行卡验证</h3>
+  <div>
+    <label for="bankcar1">测试1</label>
+    <input type="text" id="bankcar1">
+    <br> <br>
+    <label for="bankcar2">测试2</label>
+    <input type="text" id="bankcar2">
+
+    <script>
+      //16-19位数字
+      var a = Yue.validate.bankCard('', {
+        dom: $('#bankcar1'),
+        cb: function (result) {
+          console.log('bankcar1', result);
+        }
+      });
+      console.log('验证空的 卡号+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.bankCard( {
+        dom: $('#bankcar2'),
+        cb: function (result) {
+          console.log('bankcar2', result);
+        }
+      }));
+
+      console.log('只验证15位银行卡-错误', Yue.validate.bankCard('123456789012345'));
+      console.log('只验证16位银行卡-正确', Yue.validate.bankCard('1234567890123456'));
+      console.log('只验证19位银行卡-正确', Yue.validate.bankCard('1234567890123456789'));
+      console.log('只验证20位银行卡-错误', Yue.validate.bankCard('12345678901234567890'));
+    </script>
+
+  </div>
+
+  <h3>金钱千分位</h3>
+  <div>
+    <label for="money1">测试1</label>
+    <input type="text" id="money1">
+    <button>没效果的按钮</button>
+
+    <script>
+      console.log('整数部分没4位', Yue.validate.money('100.123456'));
+      console.log('全都超过3位', Yue.validate.money('1100.123456'));
+      console.log('小数部分没4位', Yue.validate.money('123456132.02'));
+      console.log('保留2位小数', Yue.validate.money('123456', {decimal: true}));
+    </script>
+
+  </div>
+
+  <h3>身份证验证</h3>
+  <div>
+    <label for="idcard1">测试1</label>
+    <input type="text" id="idcard1">
+    <br> <br>
+    <label for="idcard2">测试2</label>
+    <input type="text" id="idcard2">
+
+    <script>
+      // /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/
+      var a = Yue.validate.IDCard('', {
+        dom: $('#idcard1'),
+        cb: function (result) {
+          console.log('idcard1', result);
+        }
+      });
+      console.log('----------验证空的 卡号+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.IDCard({
+        dom: $('#idcard2'),
+        cb: function (result) {
+          console.log('idcard2', result)
+        }
+      }));
+
+      console.log('14位身份证-错误', Yue.validate.IDCard('43262319890425'));
+      console.log('19位身份证-错误', Yue.validate.IDCard('432623198904215730X'));
+      console.log('15位身份证-正确', Yue.validate.IDCard('432623198904122'));
+      console.log('18位身份证-正确', Yue.validate.IDCard('432623198904215734'));
+
+    </script>
+
+  </div>
+
+  <h3>中文验证</h3>
+  <div>
+    <label for="chinese1">测试1</label>
+    <input type="text" id="chinese1">
+    <br> <br>
+    <label for="chinese2">测试2</label>
+    <input type="text" id="chinese2">
+
+    <script>
+      // /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/
+      var a = Yue.validate.chinese('', {
+        dom: $('#chinese1'),
+        cb: function (result) {
+          console.log('chinese1', result);
+        }
+      });
+      console.log('----------验证空的 中文+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.chinese({
+        dom: $('#chinese2'),
+        cb: function (result) {
+          console.log('chinese2', result)
+        }
+      }));
+
+      console.log('全部中文-正确', Yue.validate.chinese('你好世界'));
+      console.log('部分中文-错误', Yue.validate.chinese('你好world'));
+      console.log('全部英文-错误', Yue.validate.chinese('helloworld'));
+
+    </script>
+
+  </div>
+
+  <h3>邮箱验证</h3>
+  <div>
+    <label for="email1">测试1</label>
+    <input type="text" id="email1">
+    <br> <br>
+    <label for="email2">测试2</label>
+    <input type="text" id="email2" placeholder="直接绑定事件">
+
+    <script>
+      // /^[a-z0-9][a-z0-9._-]*@[a-z0-9_-]+(\.[a-z0-9_-]+)+$/i  腾讯qq的...
+      var a = Yue.validate.email('', {
+        dom: $('#chinese1'),
+        cb: function (result) {
+          console.log('email1', result);
+        }
+      });
+      console.log('----------验证空的 email+绑定dom和回调', a);
+
+      console.log('只绑定dom和回调', Yue.validate.email({
+        dom: $('#email2'),
+        cb: function (result) {
+          console.log('email2', result)
+        }
+      }));
+
+      console.log('普通的-正确', Yue.validate.email('yyjazsf@live.cn'));
+      console.log('@后面没点-错误', Yue.validate.email('602988068@com'));
+      console.log('@前面有. @后面很多符号-正确', Yue.validate.email('yyj.zry@qq.w-w.c_om'));
+
+    </script>
+
+  </div>
+</body>
+</html>
