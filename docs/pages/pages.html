@@ -30,7 +30,7 @@
 
         <section >
 
-          <h2 id="1" style="padding-top: 40px;">me.loading</h2>
+          <h2 id="1" style="padding-top: 40px;">me.pages</h2>
           <ul class="indexs">
             <li>
               <a href="#explain">说明</a>
@@ -53,9 +53,12 @@
           <h3 id="explain" style="padding-top: 40px;">
             说明
           </h3>
-          <p>当数据加载时，所需要插入加载图片或文字。</p>
-
-
+          <p>pages，meJS分页插件，使用时需要require导入，例：</p>
+          <pre>me.require(['pages'],function(){
+  /*
+    需要通过require导入加载pages插件。
+  */
+});</pre>
           <h3 id="parameter" style="padding-top: 40px;">
             参数
           </h3>
@@ -65,72 +68,37 @@
               <td width="80">名称</td>
               <td>类型</td>
               <td width="60">可选</td>
-              <td>默认值</td>
+              <td width="60">默认值</td>
               <td>描述</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>dom</td>
-              <td>
-                <p>dom Object</p>
-                <pre>
-$('#dom')
-                </pre>
-              </td>
-              <td>否</td>
-              <td></td>
-              <td>
-                <p>1、要把loading标签插入的dom对象。</p>
-              </td>
+              <td width="80">ele</td>
+              <td>分页标签DOM：'#id 或 .class'</td>
+              <td width="60">否</td>
+              <td width="60"></td>
+              <td>分页标签DOM节点ID或者Class。</td>
             </tr>
             <tr>
-              <td>text</td>
-              <td>
-                <p>string</p>
-                <pre>
-'<img src="../images/loading.png" />'
-'数据正在加载......'
-                </pre>
-              </td>
-              <td>是</td>
-              <td></td>
-              <td>
-                <p>1、加载时需显示的文本内容或者dom元素。</p>
-              </td>
+              <td width="80">current</td>
+              <td><pre>current : 1</pre></td>
+              <td width="60">否</td>
+              <td width="60"></td>
+              <td>分页起始页数，实例为从第1页开始。</td>
             </tr>
             <tr>
-              <td>callback</td>
+              <td width="80">backFn</td>
+              <td><pre>backFn : function(p,isPages){
+  //TODO
+}</pre></td>
+              <td width="60">否</td>
+              <td width="60"></td>
               <td>
-                <p>Function</p>
-                <pre>
-function(){
-  
-}
-                </pre>
+                <p>分页callback函数，里面返回两个参数，分别为p,isPages：</p>
+                <p>p参数是当前显示的页码。</p>
+                <p>isPages参数，用在有查询条件的分页，表示是否重新初始化分页DOM。</p>
               </td>
-              <td>否</td>
-              <td></td>
-              <td>
-                <p>1、加载文件加载成功后执行回调函数。</p>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
-          <h3 id="print" style="padding-top: 40px;">
-            输出
-          </h3>
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <td>名称</td>
-              <td>类型</td>
-              <td>描述</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
             </tr>
             </tbody>
           </table>
@@ -140,13 +108,43 @@ function(){
           </h3>
           <div>
             <pre>
-me.loading($('#dom'),'<img src="../images/loading.png" />',function(){
-  //TODO
+/* HTML Code*/
+&lt;ul class="m_fanye">&lt;/ul>
+
+/* JS Code */
+/*
+  me.pages单独使用：
+*/
+me.require(['pages'],function(){
+  me.pages({
+    ele:'.m_fanye',//分页标签节点ID或者Class
+    current:1,//开始页数，从第一页。
+    backFn:function(p,isPages){//点击分页的执行函数,p参数是点击的页码。
+      //TODO
+    }
+  });
 });
 
-me.loading($('#dom'),'数据正在加载......',function(){
-  //TODO
+/*
+  me.pages配合后台me.ajax使用：
+*/
+me.pages({
+  ele:'.m_fanye',//分页标签节点ID或者Class
+  current:1,//开始页数，从第一页。
+  backFn:function(p,isPages){//点击分页的执行函数,p参数是点击的页码。
+    isPages = isPages || 'undefined';
+    me.ajax({
+      key : 'products_pc',
+      data : {
+        current : p,//请求当前页数数据
+      },
+      callback : function(data){
+        //TODO
+      }
+    });
+  }
 });
+
             </pre>
           </div>
         </section>

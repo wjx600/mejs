@@ -30,7 +30,7 @@
 
         <section >
 
-          <h2 id="1" style="padding-top: 40px;">me.loading</h2>
+          <h2 id="1" style="padding-top: 40px;">me.replaceTpl</h2>
           <ul class="indexs">
             <li>
               <a href="#explain">说明</a>
@@ -53,9 +53,24 @@
           <h3 id="explain" style="padding-top: 40px;">
             说明
           </h3>
-          <p>当数据加载时，所需要插入加载图片或文字。</p>
-
-
+          <p>replaceTpl，meJS页面模板插件，使用时需要require导入，例：</p>
+          <pre>me.require(['replaceTpl'],function(){
+  /*
+    需要通过require导入加载replaceTpl插件。
+  */
+});</pre>
+          <p>页面定义模板数据：</p>
+          <p>注：模板需写在script标签中，并且type类型为“text/tpl”。</p>
+          <pre>
+&lt;script type="text/tpl" id="tips_money_top_inner">
+&lt;ul>
+    &lt;li>平台运营&lt;strong id="operationYear">{{operationYear}}&lt;/strong>年&lt;strong id="operationMonth">{{operationMonth}}&lt;/strong>个月&lt;strong id="operationDay">{{operationDay}}&lt;/strong>天&lt;/li>
+    &lt;li>累计注册人数&lt;strong id="reg_num">{{reg_num}}&lt;/strong>人&lt;/li>
+    &lt;li>累计出借金额&lt;strong id="deal_amount">{{deal_amount}}&lt;/strong>元&lt;/li>
+    &lt;li>累计收益额&lt;strong id="yield_amount">{{yield_amount}}&lt;/strong>元&lt;/li>
+&lt;/ul>
+&lt;/script>
+          </pre>
           <h3 id="parameter" style="padding-top: 40px;">
             参数
           </h3>
@@ -65,72 +80,45 @@
               <td width="80">名称</td>
               <td>类型</td>
               <td width="60">可选</td>
-              <td>默认值</td>
+              <td width="60">默认值</td>
               <td>描述</td>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td>dom</td>
-              <td>
-                <p>dom Object</p>
-                <pre>
-$('#dom')
-                </pre>
-              </td>
-              <td>否</td>
-              <td></td>
-              <td>
-                <p>1、要把loading标签插入的dom对象。</p>
-              </td>
+              <td width="80">tpl</td>
+              <td>'#id'</td>
+              <td width="60">否</td>
+              <td width="60"></td>
+              <td>模板标签对应DOM ID。</td>
             </tr>
             <tr>
-              <td>text</td>
+              <td width="80">data</td>
               <td>
-                <p>string</p>
-                <pre>
-'<img src="../images/loading.png" />'
-'数据正在加载......'
-                </pre>
-              </td>
-              <td>是</td>
-              <td></td>
-              <td>
-                <p>1、加载时需显示的文本内容或者dom元素。</p>
-              </td>
+                <p>js对象，渲染数据：</p>
+                <pre>{
+  deal_amount : "84",
+  operationDay : "18",
+  operationMonth : "0",
+  operationYear : "1",
+  reg_num : 32826,
+  trade_num : 15272,
+  yield_amount : "558"
+}</pre></td>
+              <td width="60">是</td>
+              <td width="60"></td>
+              <td>模板渲染对应data数据。</td>
             </tr>
             <tr>
-              <td>callback</td>
+              <td width="80">callback</td>
+              <td><pre>callback : function(str){
+  //TODO
+}</pre></td>
+              <td width="60">否</td>
+              <td width="60"></td>
               <td>
-                <p>Function</p>
-                <pre>
-function(){
-  
-}
-                </pre>
+                <p>模板渲染callback函数，渲染完返回模板html字符串str。</p>
               </td>
-              <td>否</td>
-              <td></td>
-              <td>
-                <p>1、加载文件加载成功后执行回调函数。</p>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
-          <h3 id="print" style="padding-top: 40px;">
-            输出
-          </h3>
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <td>名称</td>
-              <td>类型</td>
-              <td>描述</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
             </tr>
             </tbody>
           </table>
@@ -140,12 +128,36 @@ function(){
           </h3>
           <div>
             <pre>
-me.loading($('#dom'),'<img src="../images/loading.png" />',function(){
-  //TODO
-});
+/* HTML Code */
+&lt;div class="tips_money_top_inner">&lt;/div>
 
-me.loading($('#dom'),'数据正在加载......',function(){
-  //TODO
+&lt;script type="text/tpl" id="tips_money_top_inner">
+&lt;ul>
+    &lt;li>平台运营&lt;strong id="operationYear">{{operationYear}}&lt;/strong>年&lt;strong id="operationMonth">{{operationMonth}}&lt;/strong>个月&lt;strong id="operationDay">{{operationDay}}&lt;/strong>天&lt;/li>
+    &lt;li>累计注册人数&lt;strong id="reg_num">{{reg_num}}&lt;/strong>人&lt;/li>
+    &lt;li>累计出借金额&lt;strong id="deal_amount">{{deal_amount}}&lt;/strong>元&lt;/li>
+    &lt;li>累计收益额&lt;strong id="yield_amount">{{yield_amount}}&lt;/strong>元&lt;/li>
+&lt;/ul>
+&lt;/script>
+
+/* JS Code */
+var data = {
+  deal_amount : "84",
+  operationDay : "18",
+  operationMonth : "0",
+  operationYear : "1",
+  reg_num : 32826,
+  trade_num : 15272,
+  yield_amount : "558"
+};
+
+me.replaceTpl({
+  tpl: '#tips_money_top_inner',
+  data : data,
+  callback : function(str){
+    $('.tips_money_top_inner').html(str);
+    //TODO
+  }
 });
             </pre>
           </div>

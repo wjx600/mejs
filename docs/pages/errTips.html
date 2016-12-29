@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>me文档</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/jquery-1.8.2.min.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/lists.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+
+        <ul id="lists" class="nav nav-list bs-docs-sidenav affix-top">
+          <!--<li>
+            <a href="#"><i class="icon-chevron-right"></i>meJS API索引</a>
+          </li>-->
+        </ul>
+
+      </div>
+      <div class="span9">
+
+        <section >
+
+          <h2 id="1" style="padding-top: 40px;">me.errorTips</h2>
+          <ul class="indexs">
+            <li>
+              <a href="#explain">说明</a>
+            </li>
+
+            <li>
+              <a href="#parameter">输入参数</a>
+            </li>
+
+            <li>
+              <a href="#print">输出</a>
+            </li>
+
+            <li>
+              <a href="#code">代码</a>
+            </li>
+          </ul>
+          <hr>
+
+          <h3 id="explain" style="padding-top: 40px;">
+            说明
+          </h3>
+          <p>errorTips，显示toast提示信息，使用时需要require导入，例：</p>
+          <pre>me.require(['errorTips'],function(){
+  /*
+    需要通过require导入加载errorTips插件。
+  */
+});</pre>
+          <h3 id="parameter" style="padding-top: 40px;">
+            参数
+          </h3>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <td width="80">名称</td>
+              <td>类型</td>
+              <td width="60">可选</td>
+              <td width="60">默认值</td>
+              <td>描述</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="80">text</td>
+              <td>string</td>
+              <td width="60">否</td>
+              <td width="60"></td>
+              <td>提示消息的文本内容</td>
+            </tr>
+            <tr>
+              <td width="80">time</td>
+              <td>number</td>
+              <td width="60">是</td>
+              <td width="60">3000</td>
+              <td>提示消息展示的时间</td>
+            </tr>
+            <tr>
+              <td width="80">form</td>
+              <td>number</td>
+              <td width="60">是</td>
+              <td width="60">0</td>
+              <td>提示消息显示动画的起始位置</td>
+            </tr>
+            <tr>
+              <td width="80">to</td>
+              <td>number</td>
+              <td width="60">是</td>
+              <td width="60">80</td>
+              <td>提示消息显示动画的结束位置</td>
+            </tr>
+            <tr>
+              <td width="80">width</td>
+              <td>string</td>
+              <td width="60">是</td>
+              <td width="60">50%</td>
+              <td>提示消息的宽度</td>
+            </tr>
+            <tr>
+              <td width="80">left</td>
+              <td>string</td>
+              <td width="60">是</td>
+              <td width="60">50%</td>
+              <td>提示消息定位距离左侧的位置</td>
+            </tr>
+            <tr>
+              <td width="80">callback</td>
+              <td>function</td>
+              <td width="60">是</td>
+              <td width="60">80</td>
+              <td>提示消息消失后执行的回调函数</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <h3 id="code" style="padding-top: 40px;">
+            代码
+          </h3>
+          <div>
+            <pre>
+me.errorTips({
+		text:"请输入正确的姓名!",
+		time:3000,
+		form:20,
+		to  :150,
+		width:'300px',
+		left:'300px',
+		callback:function(){
+			//----
+		}
+	});
+            </pre>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $('pre').addClass('prettyprint');
+      $('td pre').removeClass('prettyprint');
+      prettyPrint();
+      var $window = $(window);
+      $('.bs-docs-sidenav').affix({
+        offset: {
+          top: function () {
+            return $window.width() <= 980 ? 290 : 210
+          },
+          bottom: 270
+        }
+      });
+      $(".content").find('h1, h2, h3, h4, h5, h6').each(function () {
+        var node = $(this);
+        if (!node.attr("id")) {
+          node.attr("id", "index_" + node.text());
+        }
+        node.css("paddingTop", 40);
+      });
+    });
+  </script>
+
+
+</body>
+</html>
