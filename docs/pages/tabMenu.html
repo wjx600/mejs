@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--flex布局</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="http://118.126.14.44:1196/dist/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="http://118.126.14.44:1196/dist/me.css">
+  <style>
+    #vertical,#horizontal,#inline{
+      margin:30px 0;
+    }
+    .menu-submenu-horizontal:hover{
+      background: #fff !important;
+    }
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+.docs-pictures,.docs-pictures1 {
+    width: 500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul{
+    list-style-type: none;
+  }
+  .docs-pictures li,.docs-pictures1 li {
+    width: 250px;
+    height: 150px;
+    float: left;
+  }
+  .docs-pictures li img,.docs-pictures1 li img {
+    width: 250px;
+    height: 150px;
+  }
+  .docs-galley1 .viewer-button-close{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  tabMenu
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>为页面和功能提供导航的菜单列表。</p>
+      <p>导航菜单是一个网站的灵魂，用户依赖导航在各个页面中进行跳转。</p>
+      <p>一般分为顶部导航和侧边导航，顶部导航提供全局性的类目和功能，侧边导航提供多级结构来收纳和排列网站架构。</p>
+      <h4 class="h-title-4" id="explain">HTML</h4>
+      <p>导航菜单约定html结构，样式可以根据实际情况用css样式定义。</p>
+		  <pre>
+&lt;div id="cate"&gt; &lt;!--被渲染菜单id，根节点--&gt;
+  &lt;div&gt;
+    &lt;div&gt;  &lt;!--菜单标题，可以自定义加任何icon，文字，标签等元素。--&gt;
+        &lt;h2&gt;理财&lt;/h2&gt;
+        &lt;i class="me-ion-o-arrow-right"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div&gt; &lt;!--菜单显示内容，可以自定义加任何icon，文字，标签等元素。--&gt;
+      &lt;p style="text-align: center;padding-top:20px;"&gt;理财&lt;/p&gt;
+      &lt;img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+		  </pre>
+      <h4 class="h-title-4" id="explain">JS</h4>
+      <p>需要通过me.require导入menu组件js、css文件。具体见<a href="./require.html">me.require用法</a></p>
+		  <pre>
+me.require(['tabMenu&css'], 'tabMenu'); //加载tabMenu.js、tabMenu.css文件
+me.require.ready('tabMenu',function(){
+  me.tabMenu.render('cate', {
+    leftWidth: '160',
+    leftHeight: '200',
+    rightWidth: '530',
+    rightHeight: '348',
+  });
+});
+		  </pre>
+      <div data-wrap="layout">
+        <h4 class="h-title-4" id="code">示例默认不写mode</h4>
+        <div id="cate">
+          <div>
+            <div>
+                <h2>理财</h2>
+                <i class="me-ion-o-arrow-right"></i>
+            </div>
+            <div>
+                <h2>众筹</h2>
+                <i class="me-ion-o-arrow-right"></i>
+            </div>
+            <div>
+                <h2>保险</h2>
+                <i class="me-ion-o-arrow-right"></i>
+            </div>
+            <div>
+                <h2>融资</h2>
+                <i class="me-ion-o-arrow-right"></i>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">理财</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">众筹</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">保险</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">融资</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-wrap="layout">
+        <h4 class="h-title-4" id="code">示例 mode:'horizontal'</h4>
+        <div id="cate1">
+          <div>
+            <div>
+                <h2>理财</h2>
+            </div>
+            <div>
+                <h2>众筹</h2>
+            </div>
+            <div>
+                <h2>保险</h2>
+            </div>
+            <div>
+                <h2>融资</h2>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">理财</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">众筹</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">保险</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+            <div>
+              <p style="text-align: center;padding-top:20px;">融资</p>
+              <img src="https://img30.360buyimg.com/jr_image/jfs/t4243/78/140755024/37239/ccf5d5c1/58afe47aN307e483a.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4 class="h-title-4" id="code">API</h4>
+      <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>名称</th>
+              <th>说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>第一个参数<br />需要渲染导航元素id</td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate');
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>mode<br />菜单类型，现在支持水平<br />string: 'horizontal'<br /></td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate', {
+  <b>mode: 'horizontal',</b>
+  leftWidth: '160',
+  leftHeight: '200',
+  rightWidth: '530',
+  rightHeight: '348',
+});
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>leftWidth<br />设置菜单标题宽度</td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate', {
+  <b>leftWidth: '160',</b>
+  leftHeight: '200',
+  rightWidth: '530',
+  rightHeight: '348',
+});
+			  </pre>
+			  </td>
+            </tr>
+			<tr>
+              <td>leftHeight<br />设置菜单标题高度</td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate', {
+  leftWidth: '160',
+  <b>leftHeight: '200',</b>
+  rightWidth: '530',
+  rightHeight: '348',
+});
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>rightWidth<br />设置菜单显示浮层宽度</td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate', {
+  leftWidth: '160',
+  leftHeight: '200',
+  <b>rightWidth: '530',</b>
+  rightHeight: '348',
+});
+			  </pre>
+			  </td>
+            </tr>
+            <tr>
+              <td>rightHeight<br />设置菜单显示浮层高度</td>
+              <td>
+			  <pre>
+me.tabMenu.render('cate', {
+  leftWidth: '160',
+  leftHeight: '200',
+  rightWidth: '530',
+  <b>rightHeight: '348',</b>
+});
+			  </pre>
+			  </td>
+            </tr>
+            </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  me.require(['tabMenu&css'], 'tabMenu');
+  me.require.ready('tabMenu',function(){
+    me.tabMenu.render('cate', {
+      leftWidth: '160',
+      leftHeight: '200',
+      rightWidth: '530',
+      rightHeight: '348',
+    });
+    me.tabMenu.render('cate1', {
+      mode: 'horizontal',
+      leftWidth: '560',
+      leftHeight: '100',
+      rightWidth: '530',
+      rightHeight: '348',
+    });
+  });
+</script>
+</html>

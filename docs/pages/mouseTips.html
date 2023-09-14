@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--mouseTips</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="http://118.126.14.44:1196/dist/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="http://118.126.14.44:1196/dist/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	p{line-height:24px;}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  MouseTips
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>气泡形式的鼠标弱提示</p>
+		  <p>建议使用在名称解释，操作说明等场景中；提供了8中展示位置。任何元素可以作为载体，但载体元素必须包括以<b>mouseTips--</b>开头的class</p>
+		  <p>载体元素必须拥有<b>data-label</b>属性用于存放提示的具体文本</p>
+		  <p></p>
+		  <pre>
+&lt;div class="mouseTips--bottom-right" data-label="我是提示的文本"&gt;鼠标Tips&lt;/div&gt;		  
+		  </pre>
+		   <h4 class="h-title-4" id="code">示例</h4>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>className</th>
+              <th>说明</th>
+              <th>示例(将鼠标放到文本上查看效果)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>mouseTips--left</td>
+              <td>在目标元素的左边显示</td>
+              <td><span class="mouseTips--left" data-label="我在目标元素的左边">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--right</td>
+              <td>在目标元素的右边显示</td>
+              <td><span class="mouseTips--right" data-label="我在目标元素的右边">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--top</td>
+              <td>在目标元素的上边显示</td>
+              <td><span class="mouseTips--top" data-label="我在目标元素的上边">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--top-left</td>
+              <td>在目标元素的上面显示,小箭头靠左</td>
+              <td><span class="mouseTips--top-left" data-label="我是提示文本">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--top-right</td>
+              <td>在目标元素的上面显示,小箭头靠右</td>
+              <td><span class="mouseTips--top-right" data-label="我是提示文本">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--bottom</td>
+              <td>在目标元素的下面显示</td>
+              <td><span class="mouseTips--bottom" data-label="我在下面显示">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--bottom-left</td>
+              <td>在目标元素的下面显示,小箭头靠左</td>
+              <td><span class="mouseTips--bottom-left" data-label="我是提示文本">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--bottom-right</td>
+              <td>在目标元素的下面显示,小箭头靠右</td>
+              <td><span class="mouseTips--bottom-right" data-label="我是提示文本">鼠标放上来！</span></td>
+            </tr>
+            </tbody>
+			<tr>
+              <td>mouseTips--no-animate</td>
+              <td>没有动画效果</td>
+              <td><span class="mouseTips--bottom mouseTips--no-animate" data-label="我没有动画了">鼠标放上来！</span></td>
+            </tr>
+			<tr>
+              <td>mouseTips--bounce</td>
+              <td>增强动画效果</td>
+              <td><span class="mouseTips--bottom mouseTips--bounce" data-label="没发现我动了么?">鼠标放上来！</span></td>
+            </tr>
+            </tbody>
+          </table>
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

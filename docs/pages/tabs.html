@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--级联选择</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="http://118.126.14.44:1196/dist/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="http://118.126.14.44:1196/dist/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+  ul li{
+    box-sizing:border-box
+  }
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	#container{
+		width:200px;
+	}
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:14px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+ul{
+      margin:0;
+}
+.showCode{
+  cursor:pointer;
+}
+
+    .codeBox{
+      display:none
+    }
+    .s1 {
+      overflow: hidden;
+      zoom: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .s1:nth-of-type(1),.s1:nth-of-type(3),.s1:nth-of-type(5){
+      padding-left:30px;
+    }
+    ul li {
+      list-style: none;
+    }
+    .answer {
+      color: red;
+      padding: 10px;
+    }
+    .curr {
+      display: block!important;
+    }
+    .active {
+      color: #108ee9;
+    }
+    .active:before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 100%;
+      height: 3px;
+      display: block;
+    }
+    .active:after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      background-color: #fff;
+      border-bottom: 3px solid #108ee9;
+      left: 0;
+      z-index: 333;
+    }
+    .s1:nth-of-type(2) {
+      overflow: hidden;
+      width: 800px;
+    }
+    .active1 {
+      color: #fff;
+      background: #0aa770;
+      border-bottom: none!important;
+      box-sizing: border-box;
+    }
+    .s1 {
+      padding:20px 0;
+      margin: 10px 0;
+      border:1px solid #afafaf;
+    }
+    .active2 {
+      background-color: #f9a938;
+      color: #fff;
+    }
+    .tabBar {
+      display: inline-block;
+      overflow: hidden;
+      margin-bottom:-1px;
+    }
+    .tabBarItem {
+      margin-right: 5px;
+      padding: 8px 20px;
+      float: left;
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid #e5e5e5;
+      border-bottom: none;
+    }
+    .tabContent {
+      color: pink;
+      width: 500px;
+      font-size: 18px;
+      padding: 30px;
+      border: 1px solid #ccc;
+      margin-top: -1px;
+    }
+    .tabContentItem {
+      height: 100%;
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+ <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			    tab 切换
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#theme">主题</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" name="explain">说明</h4>
+		  <p>级联选择控件</p>
+		  <p>使用时请用 <b>me.require</b> 方法按需加载到页面</p>
+  <h4 class="h-title-4" name="code">示例1</h4>
+  <div class="s1">
+      <ul class="" id="tabs">
+        <li><i class="me-ion-wifi"style="margin-right:10px"></i>tab1</li>
+        <li><i class="me-ion-o-cloud-download"style="margin-right:10px"></i>tab2</li>
+        <li><i class="me-ion-o-alarm"style="margin-right:10px"></i>tab3</li>
+      </ul>
+      <ul class="me-tabs-content-wrap">
+        <li>Content of Tab 1</li>
+        <li>Content of Tab 2</li>
+        <li>Content of Tab 3</li>
+      </ul>
+  </div>
+  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+<span style="font-size:18px">Dom结构</span>：					  
+    &lt;div class="s1"&gt;
+      &lt;ul class="" id="tabs"&gt;
+        &lt;li&gt;&lt;i class="me-ion-wifi"style="margin-right:10px"&gt;&lt;/i&gt;tab1&lt;/li&gt;
+        &lt;li&gt;&lt;i class="me-ion-o-cloud-download"style="margin-right:10px"&gt;&lt;/i&gt;tab2&lt;/li&gt;
+        &lt;li&gt;&lt;i class="me-ion-o-alarm"style="margin-right:10px"&gt;&lt;/i&gt;tab3&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ul class="me-tabs-content-wrap"&gt;
+        &lt;li&gt;Content of Tab 1&lt;/li&gt;
+        &lt;li&gt;Content of Tab 2&lt;/li&gt;
+        &lt;li&gt;Content of Tab 3&lt;/li&gt;
+      &lt;/ul&gt;
+  &lt;/div&gt;
+<span style="font-size:20px">JS</span>：
+  me.tabs({
+        ele:'#tabs',
+        tabBar:{
+            'width':'900px',
+            'border-bottom':'1px solid #d9d9d9',
+            'margin-bottom': '16px',
+            'overflow':'hidden'
+        },
+        tabBarItem:{
+            'padding':'8px 20px',
+            'float':'left',
+            'position':'relative',
+            'cursor': 'default',
+            'margin-right':'3px'
+        },
+        tabContent:{
+            'width':'500px',
+            
+            'color':'red',
+            'min-height':'50px'
+        },
+        tabContentItem:{
+            'display':'none'
+        },
+        tabContentActive:'.curr',
+        tabBarActive:'.active'
+    })</pre>
+  <h4 class="h-title-4" name="code">示例2</h4>
+  <div class="s1">
+      <ul class="" id="tabs1">
+        <li>tab1</li>
+        <li>tab2</li>
+        <li>tab3</li>
+        <li>tab4</li>
+        <li>tab5</li>
+        <li>tab6</li>
+        <li>tab7</li>
+      </ul>
+      <ul class="me-tabs-content-wrap">
+        <li>Content of Tab 1</li>
+        <li>Content of Tab 2</li>
+        <li>Content of Tab 3</li>
+        <li>Content of Tab 4</li>
+        <li>Content of Tab 5</li>
+        <li>Content of Tab 6</li>
+        <li>Content of Tab 7</li>
+      </ul>
+  </div>
+  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+<span style="font-size:18px">Dom结构</span>：					  						  
+&lt;div class="s1"&gt;
+      &lt;ul class="" id="tabs1"&gt;
+        &lt;li&gt;tab1&lt;/li&gt;
+        &lt;li&gt;tab2&lt;/li&gt;
+        &lt;li&gt;tab3&lt;/li&gt;
+        &lt;li&gt;tab4&lt;/li&gt;
+        &lt;li&gt;tab5&lt;/li&gt;
+        &lt;li&gt;tab6&lt;/li&gt;
+        &lt;li&gt;tab7&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;ul class="me-tabs-content-wrap"&gt;
+        &lt;li&gt;Content of Tab 1&lt;/li&gt;
+        &lt;li&gt;Content of Tab 2&lt;/li&gt;
+        &lt;li&gt;Content of Tab 3&lt;/li&gt;
+        &lt;li&gt;Content of Tab 4&lt;/li&gt;
+        &lt;li&gt;Content of Tab 5&lt;/li&gt;
+        &lt;li&gt;Content of Tab 6&lt;/li&gt;
+        &lt;li&gt;Content of Tab 7&lt;/li&gt;
+      &lt;/ul&gt;
+  &lt;/div&gt;
+<span style="font-size:20px">JS</span>：
+  me.tabs({
+    ele:'#tabs1',
+    tabBar:{
+        'display':'inline-block',        
+        'border':'1px solid #d9d9d9',
+        'border-top':' 3px solid #0aa770',
+        'border-right':'none',
+        'margin-bottom': '16px',
+        'overflow':'hidden',        
+    },
+    tabBarItem:{
+        'padding':'8px 20px',
+        'float':'left',
+        'position':'relative',
+        'cursor': 'pointer',
+        'border-right':'1px solid #e5e5e5',
+        'border-bottom':'none'
+    },
+    tabContent:{
+        'color':'pink',
+        'font-size':'18px'        
+    },
+    tabContentItem:{
+        'height':'100%',        
+    },
+    animation:true,
+    tabBarActive:'.active1'
+})
+						  </pre>
+  <h4 class="h-title-4" name="code">示例3</h4>
+   <div class="s1">
+      <ul class="" id="tabs2">
+        <li>tab1</li>
+        <li>tab2</li>
+        <li>tab3</li>
+        <li>tab4</li>
+        <li>tab5</li>        
+      </ul>
+      <ul class="me-tabs-content-wrap">
+        <li>Content of Tab 1</li>
+        <li>Content of Tab 2</li>
+        <li>Content of Tab 3</li>
+        <li>Content of Tab 4</li>
+        <li>Content of Tab 5</li>        
+      </ul>
+  </div>
+  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+<span style="font-size:18px">Dom结构</span>：					  						  
+  &lt;div class="s1"&gt;
+      &lt;ul class="" id="tabs2"&gt;
+        &lt;li&gt;tab1&lt;/li&gt;
+        &lt;li&gt;tab2&lt;/li&gt;
+        &lt;li&gt;tab3&lt;/li&gt;
+        &lt;li&gt;tab4&lt;/li&gt;
+        &lt;li&gt;tab5&lt;/li&gt;        
+      &lt;/ul&gt;
+      &lt;ul class="me-tabs-content-wrap"&gt;
+        &lt;li&gt;Content of Tab 1&lt;/li&gt;
+        &lt;li&gt;Content of Tab 2&lt;/li&gt;
+        &lt;li&gt;Content of Tab 3&lt;/li&gt;
+        &lt;li&gt;Content of Tab 4&lt;/li&gt;
+        &lt;li&gt;Content of Tab 5&lt;/li&gt;        
+      &lt;/ul&gt;
+  &lt;/div&gt;
+<span style="font-size:18px">JS</span>:
+me.tabs({
+    ele:'#tabs2',
+    tabBar:'.tabBar',
+    tabBarItem:'.tabBarItem',
+    tabContent:'.tabContent',
+    tabContentItem:'.tabContentItem',
+    tabContentActive:'.curr',
+    tabBarActive:'.active2'
+})</pre>
+<h4 class="h-title-4" id="code">示例</h4>
+				<div id="container">
+				</div>
+			<h4 class="h-title-4" id="API">API</h4>
+			<p>tab切换控件</p>
+      <table class="table table-bordered">
+            <thead>
+            <tr>
+              <td width="180">名称</td>
+              <td>说明</td>
+              <td>使用示例</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td width="180">ele<font color="red">（必传参数）</font></td>
+              <td>此参数是切换按钮的父元素</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs'
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">tabBar<font color="red">（必传参数）</font></td>
+              <td>此参数为切换按钮的父元素设置样式,所传参数可为对象，或者是class名(class名自定义)</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',
+})</pre>
+							</td>
+					</tr>
+           <tr>
+              <td width="180">tabBarItem<font color="red">（必传参数）</font></td>
+              <td>此参数为切换按钮设置样式,所传参数同上</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">tabContent<font color="red">（必传参数）</font></td>
+              <td>此参数为切换项的父元素设置样式,所传参数同上</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',<br>  tabContent:{'width':'500px',}
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">tabContentItem<font color="red">（必传参数）</font></td>
+              <td>此参数为切换项设置样式,所传参数同上</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',<br>  tabContent:{'width':'500px',},<br>  tabContentItem:'{'display:'none'}'
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">tabBarActive<font color="red">（必传参数）</font></td>
+              <td>此参数为切换按钮的点击时状态,所传参数为class名</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',<br>  tabContent:{'width':'500px',},<br>  tabContentItem:'{'display:'none'}',<br>  tabBarActive:'.active',
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">tabcontentActive<font color="red">（必传参数）</font></td>
+              <td>此参数为切换项的当前状态,所传参数为class名</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',<br>  tabContent:{'width':'500px',},<br>  tabContentItem:'{'display:'none'}',<br>  tabBarActive:'.active',<br>  tabContentActive:'.curr'
+})</pre>
+							</td>
+					</tr>
+          <tr>
+              <td width="180">animation</td>
+              <td>此参数为切换项添加滑动效果,所传参数为true或false,当传true时，切换项及其父元素能设置显示隐藏的样式(普通情况下，如果animation为true时，切换项的当前状态可以不传)</td>
+              <td>
+								<pre>me.tabs({<br>  ele:'#tabs',<br>  tabBar:'.tabBar',<br>  tabBarItem:'.tabBarItem',<br>  tabContent:{'width':'500px','height':'300px'},<br>  tabContentItem:'{'color:'red'}',<br>  tabBarActive:'.active',<br>  animation:true
+})</pre>
+							</td>
+					</tr>
+        </table>
+</div>
+   
+   <script>
+	 me.require(['tabs'], 'bundle');
+	 me.require.ready('bundle',function(){
+     $(".showCode").bind("click",function(){
+      var codebox = $(this).next("pre.codeBox");
+      if(codebox.is(":visible")){
+        codebox.hide();
+      }else{
+        codebox.show();
+      }
+    })
+     me.tabs({
+        ele:'#tabs',
+        tabBar:{
+            'width':'900px',
+            'border-bottom':'1px solid #d9d9d9',
+            'margin-bottom': '16px',
+            'overflow':'hidden'
+        },
+        tabBarItem:{
+            'padding':'8px 20px',
+            'float':'left',
+            'position':'relative',
+            'cursor': 'default',
+            'margin-right':'3px'
+        },
+        tabContent:{
+            'width':'500px',
+            
+            'color':'red',
+            'min-height':'50px'
+        },
+        tabContentItem:{
+            'display':'none'
+        },
+        tabContentActive:'.curr',
+        tabBarActive:'.active'
+    })
+me.tabs({
+    ele:'#tabs1',
+    tabBar:{
+        'display':'inline-block',        
+        'border':'1px solid #d9d9d9',
+        'border-top':' 3px solid #0aa770',
+        'border-right':'none',
+        'margin-bottom': '16px',
+        'overflow':'hidden',
+        
+    },
+    tabBarItem:{
+        'padding':'8px 20px',
+        'float':'left',
+        'position':'relative',
+        'cursor': 'pointer',
+        'border-right':'1px solid #e5e5e5',
+        'border-bottom':'none'
+    },
+    tabContent:{
+        'color':'pink',
+        'font-size':'18px'
+        
+    },
+    tabContentItem:{
+        'height':'100%',
+        
+    },
+    animation:true,
+    tabBarActive:'.active1'
+})
+me.tabs({
+    ele:'#tabs2',
+    tabBar:'.tabBar',
+    tabBarItem:'.tabBarItem',
+    tabContent:'.tabContent',
+    tabContentItem:'.tabContentItem',
+    tabContentActive:'.curr',
+    tabBarActive:'.active2'
+})
+})
+   </script>
+</body>
+</html>

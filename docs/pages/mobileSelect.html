@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--移动端SELECT</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="http://118.126.14.44:1196/dist/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="http://118.126.14.44:1196/dist/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 0 0;}
+	
+	
+	.layout{
+		width:865px;
+		background:url(../images/layout.png) repeat-y;
+	}
+	[data-item^="col-"]{
+		background:rgba(0,160,233,.8);
+		font-size:18px;
+		color:#fff;
+		min-height:45px;
+		line-height:45px;
+		text-align:center;
+	}
+	[data-wrap="layout"]{
+		margin-bottom:20px;
+	}
+	.layoutBg{
+		background:rgba(255,255,255,.7);
+		color:#000;
+	}
+	b{
+	color:#ff0000; font-weight:900;
+	}
+	.codeBox{
+	background:none;
+	text-align:left;
+	}
+	.codeStyle{
+	padding-left:10px;background:none;
+	}
+	.codeStyle [data-item^="col-"]{
+	background:none; border:1px solid #ff6600;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  默认SELECT
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#theme">主题</a>
+				</li>
+				<li>
+				  <a href="#API">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>移动端selec控件</p>
+		  <p>使用是请用 <b>me.require</b> 方法按需加载到页面</p>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-8" class="codeBox">
+		  <pre>
+DOM结构：
+&lt;div id="trigger1"&gt;&lt;/div&gt;		  
+js调用：
+me.require(['mobileSelect&css'], 'bundle');
+me.require.ready('bundle',function(){
+	var mobileSelect1 = new me.MobileSelect({
+	    trigger: '#trigger1',
+	    title: '选择地区',
+	    wheels: [
+                  {data:[
+                    {
+                        id:'1',
+                        value:'附近',
+                        childs:[
+                            {id:'1',value:'1000米'},
+                            {id:'2',value:'2000米'},
+                            {id:'3',value:'3000米'},
+                            {id:'4',value:'5000米'},
+                            {id:'5',value:'10000米'}
+                        ]
+                    },
+                    {id:'2',value:'上城区'},
+                    {id:'3',value:'下城区'},
+                    {id:'4',value:'江干区'},
+                    {id:'5',value:'拱墅区'},
+                    {id:'6',value:'西湖区'}
+                ]}
+            ],
+	    position:[2] //初始化定位
+	});
+})
+		  </pre>			
+				</div>
+				<div data-item="col-4"><img src="../images/mobilSelect.gif"></div>
+			</div>
+			<h4 class="h-title-4" id="theme">快速使用</h4>
+			<p>普通数组格式-非联动:</p>
+			<pre>
+var mobileSelect1 = new MobileSelect({
+    trigger: '#trigger1',
+    title: '单项选择',
+    wheels: [
+                {data:['周日','周一','周二','周三','周四','周五','周六']}
+            ],
+    position:[2] //初始化定位
+});
+			</pre>
+			<p>json格式-非联动:</p>
+			<pre>
+var mobileSelect2 = new MobileSelect({
+    trigger: '#trigger2',
+    title: '地区选择',
+    wheels: [
+                {data:[
+                    {id:'1',value:'附近'},
+                    {id:'2',value:'上城区'},
+                    {id:'3',value:'下城区'},
+                    {id:'4',value:'江干区'},
+                    {id:'5',value:'拱墅区'},
+                    {id:'6',value:'西湖区'}
+                ]},
+                {data:[
+                    {id:'1',value:'1000米'},
+                    {id:'2',value:'2000米'},
+                    {id:'3',value:'3000米'},
+                    {id:'4',value:'5000米'},
+                    {id:'5',value:'10000米'}
+                ]}
+            ],
+    callback:function(indexArr, data){
+        console.log(data); //返回选中的json数据
+    }
+});
+			</pre>
+			<p>json格式-联动:</p>
+			<pre>
+	var mobileSelect3 = new MobileSelect({
+      trigger: '#trigger3',
+      title: '地区选择-联动',
+      wheels: [
+                  {data:[
+                      {
+                          id:'1',
+                          value:'附近',
+                          childs:[
+                              {id:'1',value:'1000米'},
+                              {id:'2',value:'2000米'},
+                              {id:'3',value:'3000米'},
+                              {id:'4',value:'5000米'},
+                              {id:'5',value:'10000米'}
+                          ]
+                      },
+                      {id:'2',value:'上城区'},
+                      {id:'3',value:'下城区'},
+                      {id:'4',value:'江干区'},
+                      {id:'5',value:'拱墅区'},
+                      {id:'6',value:'西湖区'}
+                  ]}
+              ],
+      position:[0,1],
+      callback:function(indexArr, data){
+          console.log(data); //返回选中的json数据
+      }
+  });	
+			</pre>
+			<p>数据字段名映射:</p>
+			<pre>
+//假如你的数据的字段名为id,title,children
+    //与mobileSelect的id,value,childs字段名不匹配
+    //可以用keyMap属性进行字段名映射
+    var mobileSelect5 = new MobileSelect({
+        trigger: '#trigger5',
+        title: '数据字段名映射',
+        wheels: [
+                    {data:[
+                        {
+                            id:'1',
+                            title:'A',
+                            children:[
+                                {id:'A1',title:'A-a'},
+                                {id:'A2',title:'A-b'},
+                                {id:'A3',title:'A-c'}
+                            ]
+                        },
+                        {
+                            id:'1',
+                            title:'B',
+                            children:[
+                                {id:'B1',title:'B-a'},
+                                {id:'B2',title:'B-b'},
+                                {id:'B3',title:'B-c'}
+                            ]
+                        },
+                    ]}
+                ],
+        keyMap: {
+            id:'id',
+            value: 'title',
+            childs :'children'
+        },
+        callback:function(indexArr, data){
+            console.log(data);
+        }
+    });
+			</pre>
+
+			<h4 class="h-title-4" id="API">参数说明</h4>
+			<p>注：回调函数中返回的参数含义如下</p>
+			<p>indexArr是当前选中的索引数组 如[0,0,1] 代表有三个轮子 选中的数据是第一个轮子的第0个数据、第二个轮子的第0个数据、第三个轮子的第1个数据</p>
+			<p>data是当前选中的json数据 如[{id:'1',value:'hello'},{id:'2',value:'world'}]</p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+					<th>选项</th>
+					<th>默认值</th>
+					<th>类型</th>
+					<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<td>trigger</td>
+					<td>必填参数 无默认值</td>
+					<td>String</td>
+					<td>触发对象的id/class/tag</td>
+					</tr>
+					<tr>
+					<td>wheels</td>
+					<td>必填参数 无默认值</td>
+					<td>Array</td>
+					<td>数据源,需要显示的数据</td>
+					</tr>
+					<tr>
+					<td>callback</td>
+					<td>function(indexArr, data){}</td>
+					<td>function</td>
+					<td>选择成功后触发的回调函数，返回indexArr、data</td>
+					</tr>
+					<tr>
+					<td>transitionEnd</td>
+					<td>function(indexArr, data){}</td>
+					<td>function</td>
+					<td>每一次手势滑动结束后触发的回调函数,返回indexArr、data</td>
+					</tr>
+					<tr>
+					<td>cancel</td>
+					<td>function(indexArr, data){}</td>
+					<td>function</td>
+					<td>返回的是indexArr和data是上一次点击确认按钮时的值</td>
+					</tr>
+					<tr>
+					<td>onShow</td>
+					<td>function(e){}</td>
+					<td>function</td>
+					<td>显示控件后触发的回调函数, 返回参数为对象本身</td>
+					</tr>
+					<tr>
+					<td>onHide</td>
+					<td>function(e){}</td>
+					<td>function</td>
+					<td>隐藏控件后触发的回调函数, 返回参数为对象本身</td>
+					</tr>
+					<tr>
+					<td>title</td>
+					<td><code>''</code></td>
+					<td>String</td>
+					<td>控件标题</td>
+					</tr>
+					<tr>
+					<td>position</td>
+					<td>[0,0,0,…]</td>
+					<td>Array</td>
+					<td>初始化定位</td>
+					</tr>
+					<tr>
+					<td>connector</td>
+					<td><code>' '</code></td>
+					<td>String</td>
+					<td>多个轮子时，多个值中间的连接符，默认是空格</td>
+					</tr>
+					<tr>
+					<td>ensureBtnText</td>
+					<td><code>'确认'</code></td>
+					<td>String</td>
+					<td>确认按钮的文本内容</td>
+					</tr>
+					<tr>
+					<td>cancelBtnText</td>
+					<td><code>'取消'</code></td>
+					<td>String</td>
+					<td>取消按钮的文本内容</td>
+					</tr>
+					<tr>
+					<td>ensureBtnColor</td>
+					<td><code>'#1e83d3'</code></td>
+					<td>String</td>
+					<td>确认按钮的文本颜色</td>
+					</tr>
+					<tr>
+					<td>cancelBtnColor</td>
+					<td><code>'#666666'</code></td>
+					<td>String</td>
+					<td>取消按钮的文本颜色</td>
+					</tr>
+					<tr>
+					<td>titleColor</td>
+					<td><code>'#000000'</code></td>
+					<td>String</td>
+					<td>控件标题的文本颜色</td>
+					</tr>
+					<tr>
+					<td>titleBgColor</td>
+					<td><code>'#ffffff'</code></td>
+					<td>String</td>
+					<td>控件标题的背景颜色</td>
+					</tr>
+					<tr>
+					<td>textColor</td>
+					<td><code>'#000000'</code></td>
+					<td>String</td>
+					<td>轮子内文本的颜色</td>
+					</tr>
+					<tr>
+					<td>bgColor</td>
+					<td><code>'#ffffff'</code></td>
+					<td>String</td>
+					<td>轮子背景颜色</td>
+					</tr>
+					<tr>
+					<td>maskOpacity</td>
+					<td><code>0.7</code></td>
+					<td>Number</td>
+					<td>遮罩透明度</td>
+					</tr>
+					<tr>
+					<td>keyMap</td>
+					<td><code>{id:'id', value:'value', childs:'childs'</code>}</td>
+					<td>Object</td>
+					<td>字段名映射，适用于字段名不匹配id,value,childs的数据格式</td>
+					</tr>
+					<tr>
+					<td>triggerDisplayData</td>
+					<td><code>true</code></td>
+					<td>Boolean</td>
+					<td>在点击确认时，trigger的innerHtml是否变为选择的数据。<br>（如果trigger里面还有其他元素，则可以设置为false；如果需要在别的地方显示数据，则可用callback返回的数据自行拼接）</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4 class="h-title-4" id="API">功能函数</h4>
+			<p>注：功能函数中需要传递的参数含义如下</p>
+			<p>sliderIndex 代表的是要修改的轮子的索引</p>
+			<p>posIndex 代表位置索引</p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>函数名</th>
+						<th>参数</th>
+						<th>描述</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<td>show()</td>
+					<td>无参</td>
+					<td>手动显示弹窗组件</td>
+					</tr>
+					<tr>
+					<td>hide()</td>
+					<td>无参</td>
+					<td>手动隐藏弹窗组件</td>
+					</tr>
+					<tr>
+					<td>setTitle()</td>
+					<td>string</td>
+					<td>设置控件的标题</td>
+					</tr>
+					<tr>
+					<td>locatePosition()</td>
+					<td>sliderIndex, posIndex</td>
+					<td>传入位置数组，重新定位轮子选中的位置</td>
+					</tr>
+					<tr>
+					<td>updateWheel()</td>
+					<td>sliderIndex, data</td>
+					<td>重新渲染指定的轮子</td>
+					</tr>
+					<tr>
+					<td>updateWheels()</td>
+					<td>data</td>
+					<td>重新渲染所有轮子(仅限级联数据格式使用)</td>
+					</tr>
+					<tr>
+					<td>getValue()</td>
+					<td>无参</td>
+					<td>获取组件选择的值</td>
+					</tr>
+				</tbody>
+			</table>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	
+</script>

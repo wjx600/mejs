@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>me文档-组件--滚动条</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Generate your documentation.">
+  <script src="http://118.126.14.44:1196/dist/me.js"></script>
+  <script src="../api_files/prettify.js"></script>
+  <script src="../api_files/bootstrap.js"></script>
+  <script src="../js/Components.js"></script>
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../api_files/base.css">
+  <link rel="stylesheet" type="text/css" href="http://118.126.14.44:1196/dist/me.css">
+  <style>
+	section{
+		padding-top:13px;
+	}
+	.h-title{border-bottom:1px solid #f1f1f1}
+	.h-title ul{float:right; font-size:16px;font-weight:100;list-style: none; padding-top:15px;}
+	.h-title ul li{float:left;margin:0 5px;padding-right:10px; border-right:1px solid #f1f1f1;}
+	.h-title-4{padding:20px 0 15px 0;}
+	p{line-height:24px;}
+	b{color:#ff0000;}
+	.shilibox{
+		border:1px solid #ccc;
+		border-radius:5px;
+		margin:8px 5px;
+		padding:8px 16px;
+	}
+	.shilibox h3{
+		font-size:16px;
+		line-height:26px;
+		border-bottom:1px solid #ccc;
+		margin-bottom:8px;
+	}
+	.codeBox{
+		margin-top:8px;
+		display:none;
+	}
+	.showCode{
+		text-align:right;
+		cursor:pointer;
+		margin-top:8px;
+	}
+	
+	.meScrollBox{
+		height:150px;
+		border:1px solid #e9e9e9;
+		overflow:hidden;
+	}
+	.meScrollBox p{
+		padding:10px;
+		height:500px;
+		font-size:14px;
+		background:#f9f9f9;
+	}
+	.meScrollBox_sp{
+		height:150px;
+		width:391px;
+		border:1px solid #e9e9e9;
+		overflow:hidden;
+	}
+	.meScrollBox_sp p{
+		padding:10px;
+		width:500px;
+		font-size:14px;
+		background:#f9f9f9;
+	}
+	.none{
+		display:none;
+	}
+  </style>
+</head>
+<body>
+  <div class="container content">
+    <div class="row">
+      <div class="span3 bs-docs-sidebar">
+        <ul id="lists" class="nav nav-list bs-docs-sidenav">
+        </ul>
+      </div>
+      <div class="span9">
+        <section>
+          <h3 class="h-title">
+			  滚动条
+			  <ul class="indexs">
+				<li>
+				  <a href="#explain">说明</a>
+				</li>
+				<li>
+				  <a href="#code">示例</a>
+				</li>
+				<li>
+				  <a href="#api">API</a>
+				</li>
+			  </ul>
+		  </h3>
+		  <h4 class="h-title-4" id="explain">说明</h4>
+		  <p>对系统默认滚动条的优化</p>
+		  <p>使用是请用 me.require 方法按需将meScroll.js加载到页面</p>
+
+		  <pre>
+调用方式:
+me.require(['meScroll'], 'meScroll'); //加载arousel.js文件
+me.require.ready('meScroll',function(){   //关于require的使用请查阅对应的文档
+	obj.meScroll({
+	  cursorcolor:"#ccc",
+	  autohidemode:false,
+	  .....
+	});
+})
+		  </pre>
+		   <h4 class="h-title-4" id="code">示例</h4>
+		   <div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>默认</h3>
+						<div class="meScrollBox" id="s1">
+							<p>这里是滚动内容，滚动条样式默认</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s1"&gt;
+	&lt;p&gt;这里是滚动内容，滚动条样式默认&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s1").meScroll({
+    autohidemode:false,
+    cursorcolor:"#bfbfbf"
+});
+
+						  </pre>
+					</div>
+				</div>
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>水平滚动条：</h3>
+						<div class="meScrollBox_sp" id="s2">
+							<p>这个是水平滚动条示例</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s1"&gt;
+	&lt;p&gt;这个是水平滚动条示例&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s2").meScroll({
+    autohidemode:false,
+    cursorcolor:"#bfbfbf"
+});
+						  </pre>
+					</div>
+				</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>滚动条默认不显示</h3>
+						<div class="meScrollBox" id="s3">
+							<p>滚动条默认不显示，鼠标进入激活，滚动条颜色默认黑色</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s1"&gt;
+	&lt;p&gt;滚动条默认不显示，鼠标进入激活，滚动条颜色默认黑色&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s3").meScroll();
+
+						  </pre>
+					</div>
+				</div>
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>自定义颜色的滚动条</h3>
+						<div class="meScrollBox" id="s4">
+							<p>可以给滚动条定义自己喜欢的颜色: {cursorcolor:"#ff6600"}</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s4"&gt;
+	&lt;p&gt;可以给滚动条定义自己喜欢的颜色: {cursorcolor:"#ff6600"}&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s4").meScroll({
+	cursorcolor:"#ff6600"
+});
+						  </pre>
+					</div>
+				</div>
+			</div>
+			<div data-wrap="layout">
+				<div data-item="col-6">		
+					<div class="shilibox">
+						<h3>自定义宽度的滚动条</h3>
+						<div class="meScrollBox" id="s5">
+							<p>自定义宽度的滚动条{cursorwidth:"10px"}</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s5"&gt;
+	&lt;p&gt;自定义宽度的滚动条{cursorwidth:"10px"}&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s5").meScroll({
+    cursorcolor:"#00a854",
+    cursorwidth:"10px",
+    cursoropacitymix : 0.8
+});
+
+						  </pre>
+					</div>
+				</div>
+				<div data-item="col-6">
+					<div class="shilibox">
+						<h3>带滑槽的滚动条</h3>
+						<div class="meScrollBox" id="s6">
+							<p>自定义滑槽，滚动边框,滚动条圆角</p>
+						</div>
+						  <div class="showCode">代码示例 <i class="me-ion-arrow-down-c"></i></div>
+						  <pre class="codeBox">
+Dom结构:						  
+&lt;div id="s6"&gt;
+	&lt;p&gt;自定义滑槽，滚动边框,滚动条圆角&lt;/p&gt;
+&lt;/div&gt;
+JS(必须先 require 进 meScroll)：
+$("#s6").meScroll({
+	autohidemode:false,
+	background:"#fcb8d3",
+	cursorcolor:"#c11c7b",
+	cursorwidth:"10px",
+	cursorborder:"1px solid #feeff5",
+	railpadding :{right:1},
+	cursorborderradius:"3px"
+});
+						  </pre>
+					</div>
+				</div>
+			</div>
+			<h4 class="h-title-4" id="api">API</h4>
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+				  <th>属性</th>
+				  <th>说明</th>
+				</tr>
+				</thead>
+				 <tbody>
+					<tr>
+					  <td>cursorcolor</td>
+					  <td>设置滚动条颜色,默认为“＃000000”</td>
+					</tr>
+					<tr>
+					  <td>cursoropacitymin</td>
+					  <td>设置滚动条颜色透明度,范围从1到0，默认为0（隐藏），如果设置了autohidemode为false则无效</td>
+					</tr>
+					<tr>
+					  <td>cursoropacitymax</td>
+					  <td>设置滚动条激活状态的颜色透明度,范围为1到0，默认值为1（完全不透明度）</td>
+					</tr>
+					<tr>
+					  <td>autohidemode</td>
+					  <td>滚动条非激活状态隐藏，默认值true，设置为false则一直显示</td>
+					</tr>
+					<tr>
+					  <td>cursorwidth</td>
+					  <td>设置滚动条宽度，默认5px</td>
+					</tr>
+					<tr>
+					  <td>cursorborder</td>
+					  <td>设置滚动条边框样式,默认“1px solid #fff”</td>
+					</tr>
+					<tr>
+					  <td>cursorborderradius</td>
+					  <td>设置滚动条圆角，默认“4px”</td>
+					</tr>
+					<tr>
+					  <td>background</td>
+					  <td>滚动条滑槽背景颜色，默认为空</td>
+					</tr>
+					<tr>
+					  <td>railpadding</td>
+					  <td>滚动条滑槽内边距，默认为{top：0，right：0，left：0，bottom：0}</td>
+					</tr>
+				</tbody>
+			</table>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script>
+	$(".showCode").bind("click",function(){
+		var codebox = $(this).next("pre.codeBox");
+		if(codebox.is(":visible")){
+			codebox.hide();
+		}else{
+			codebox.show();
+		}
+	})
+	me.require(['meScroll'], 'meScroll');
+	me.require.ready('meScroll',function(){
+		$("#s1").meScroll({
+			autohidemode:false,
+			cursorcolor:"#bfbfbf"
+		});
+		$("#s2").meScroll({
+			autohidemode:false,
+			cursorcolor:"#bfbfbf"
+		});
+		$("#s3").meScroll();
+		$("#s4").meScroll({
+			cursorcolor:"#ff6600"
+		});
+		$("#s5").meScroll({
+			cursorcolor:"#00a854",
+			cursorwidth:"10px",
+			cursoropacitymin : 1
+		});
+		$("#s6").meScroll({
+			autohidemode:false,
+			background:"#fcb8d3",
+			cursorcolor:"#c11c7b",
+			cursorwidth:"10px",
+			cursorborder:"1px solid #feeff5",
+			railpadding :{right:1},
+			cursorborderradius:"3px"
+		});
+	})
+</script>
