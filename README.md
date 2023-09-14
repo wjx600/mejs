@@ -1,6 +1,6 @@
 # me.js
 Me金融前端工具库
-[查看文档](https://bingbao.github.io/me.js/index.html)
+[查看文档](https://wjx600.github.io/mejs)
 
 me.js是一个包含多个常用功能的工具库，采用模块化开发。
 
