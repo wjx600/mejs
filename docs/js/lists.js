@@ -17,7 +17,9 @@ $(function () {
     'me.pages': 'pages.html',
     'me.replaceTpl': 'replaceTpl.html',
     'me.errTips': 'errTips.html',
-    'me.dialog': 'dialog.html'
+    'me.dialog': 'dialog.html',
+    'me.tabMenu': 'tabMenu.html',
+    'mouseTips': 'mouseTips.html'
   }
 
   var arr = [];
