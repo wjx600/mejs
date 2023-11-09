@@ -42,7 +42,7 @@
     <div id="app">
         <p>{{a}}</p>
         <mt-button @click.native="handleClick($event)">按钮</mt-button>
-        <div class="swipebox" @click="swipeboxClick($event)">
+        <div class="swipebox" @touchstart="swipeboxClick($event)">
         <mt-swipe :auto="400000" @change="swipeChange">
               <mt-swipe-item  @click.native="tapHandler($event)"> 
                 <div class="a f1">
@@ -87,8 +87,9 @@
                 }
             },
             swipeboxClick:function(event){
+                console.log(event)
                 if(event.target.className == 'swipebox'){
-                    alert(event.target.innerHTML)
+                    //alert(event.target.innerHTML)
                 }
             },
             clickMe: function(){
@@ -96,14 +97,14 @@
             },
             swipeChange: function(){
                 this.$nextTick(function () {
-                    document.querySelector(".swipebox").dispatchEvent(new Event('click'))
+                    document.querySelector(".swipebox").dispatchEvent(new Event('touchstart'))
                 })
             }
           },
           mounted: function () {
             this.$nextTick(function () {
                 //document.querySelector(".swipebox").click();
-                document.querySelector(".swipebox").dispatchEvent(new Event('click'))
+                document.querySelector(".swipebox").dispatchEvent(new Event('touchstart'))
             })
           }
         })
