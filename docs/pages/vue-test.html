@@ -43,7 +43,7 @@
         <p>{{a}}</p>
         <mt-button @click.native="handleClick($event)">按钮</mt-button>
         <div class="swipebox" @click="swipeboxClick($event)">
-        <mt-swipe :auto="400000">
+        <mt-swipe :auto="400000" @change="swipeChange">
               <mt-swipe-item  @click.native="tapHandler($event)"> 
                 <div class="a f1">
                     <p class="chenqinqin" data-url="https://www.baidu.com">庆庆的后宫</p>
@@ -88,16 +88,22 @@
             },
             swipeboxClick:function(event){
                 if(event.target.className == 'swipebox'){
-                    //alert(event.target.innerHTML)
+                    alert(event.target.innerHTML)
                 }
             },
             clickMe: function(){
                 alert('me')
+            },
+            swipeChange: function(){
+                this.$nextTick(function () {
+                    document.querySelector(".swipebox").dispatchEvent(new Event('click'))
+                })
             }
           },
           mounted: function () {
             this.$nextTick(function () {
-                document.querySelector(".swipebox").click();
+                //document.querySelector(".swipebox").click();
+                document.querySelector(".swipebox").dispatchEvent(new Event('click'))
             })
           }
         })
