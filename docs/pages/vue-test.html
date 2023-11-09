@@ -42,7 +42,7 @@
     <div id="app">
         <p>{{a}}</p>
         <mt-button @click.native="handleClick($event)">按钮</mt-button>
-        <div class="swipebox">
+        <div class="swipebox" @click="swipeboxClick($event)">
         <mt-swipe :auto="400000">
               <mt-swipe-item  @click.native="tapHandler($event)"> 
                 <div class="a f1">
@@ -67,6 +67,7 @@
                 </mt-swipe-item>
             </mt-swipe>
         </div>
+        <div style="margin-top: 10px;width:300px;height:200px;background:#ffcc00;" @click="clickMe">click me</div>
     </div>
     <script type="text/javascript">
         var data = { a: 1 }
@@ -84,6 +85,14 @@
                     var url = event.target.getAttribute('data-url');
                     window.open(url)
                 }
+            },
+            swipeboxClick:function(event){
+                if(event.target.className == 'swipebox'){
+                    alert(event.target.innerHTML)
+                }
+            },
+            clickMe: function(){
+                alert('me')
             }
           }
         })
