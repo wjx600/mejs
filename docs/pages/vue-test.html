@@ -88,12 +88,17 @@
             },
             swipeboxClick:function(event){
                 if(event.target.className == 'swipebox'){
-                    alert(event.target.innerHTML)
+                    //alert(event.target.innerHTML)
                 }
             },
             clickMe: function(){
                 alert('me')
             }
+          },
+          mounted: function () {
+            this.$nextTick(function () {
+                document.querySelector(".swipebox").click();
+            })
           }
         })
     </script>
