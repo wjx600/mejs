@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>cctv</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js" rel="stylesheet" type="text/javascript"></script>
+      <link rel="stylesheet" href="https://cdn.bootcss.com/element-ui/2.4.0/theme-chalk/index.css">
+      <script src="https://cdn.bootcss.com/element-ui/2.12.0/index.js" rel="stylesheet" type="text/javascript"></script>
+      <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js" rel="stylesheet" type="text/javascript"></script>
+      <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js" rel="stylesheet" type="text/javascript"></script>
+      <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js" rel="stylesheet" type="text/javascript"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/mint-ui@2.2.13/lib/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/mint-ui@2.2.13/lib/style.css">
+    <style type="text/css">
+        .swipebox{
+            width:50%;
+            height:100px;
+        }
+        .a{
+            display: flex;
+            width:100%;
+            height: 100%;
+        }
+        .a p{
+            margin: 5px;
+            border: 1px solid #000;
+            background: #fff;
+        }
+        .a.f1{
+            background: #ff6600;
+        }
+        .a.f2{
+            background: #ffcc00;
+        }
+        .a.f3{
+            background: #0a2da0;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <p>{{a}}</p>
+        <mt-button @click.native="handleClick($event)">按钮</mt-button>
+        <div class="swipebox">
+        <mt-swipe :auto="400000">
+              <mt-swipe-item  @click.native="tapHandler($event)"> 
+                <div class="a f1">
+                    <p class="chenqinqin" data-url="https://www.baidu.com">庆庆的后宫</p>
+                    <p class="chenqinqin" data-url="https://www.cctv.com">庆庆的佳丽</p>
+                    <p class="chenqinqin" data-url="https://www.zaobao.com/">庆庆的妃子</p>
+                </div>
+              </mt-swipe-item>
+              <mt-swipe-item @click.native="tapHandler($event)">
+                <div class="a f2">
+                    <p class="chenqinqin" data-url="https://www.qq.com">陈总的后宫</p>
+                    <p class="chenqinqin" data-url="https://www.163.com">陈总的佳丽</p>
+                    <p class="chenqinqin" data-url="https://www.sina.com">陈总的妃子</p>
+                </div>
+              </mt-swipe-item>
+              <mt-swipe-item @click.native="tapHandler($event)">
+                <div class="a f3">
+                    <p class="chenqinqin" data-url="https://www.fenhuang.com">陈老板的后宫</p>
+                    <p class="chenqinqin" data-url="https://www.https://developer.mozilla.org/zh-CN/docs/Web/JavaScript.com">陈老板的佳丽</p>
+                    <p class="chenqinqin" data-url="https://www.baidu.com">陈老板的妃子</p>
+                </div>
+                </mt-swipe-item>
+            </mt-swipe>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var data = { a: 1 }
+        var vm = new Vue({
+          el: '#app',
+          data: data,
+          methods: {
+            handleClick: function(e) {
+                console.log(e)
+              this.$toast('Hello world!')
+            },
+            tapHandler:function(event){
+                if(event.target.className == 'chenqinqin'){
+                    alert(event.target.innerHTML)
+                    var url = event.target.getAttribute('data-url');
+                    window.open(url)
+                }
+            }
+          }
+        })
+    </script>
+  </body>
+</html>
