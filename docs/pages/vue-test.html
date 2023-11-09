@@ -44,21 +44,21 @@
         <mt-button @click.native="handleClick($event)">按钮</mt-button>
         <div class="swipebox" @touchstart="swipeboxClick($event)">
         <mt-swipe :auto="400000" @change="swipeChange">
-              <mt-swipe-item  @click.native="tapHandler($event)"> 
+              <mt-swipe-item  @touchstart.native="tapHandler($event)"> 
                 <div class="a f1">
                     <p class="chenqinqin" data-url="https://www.baidu.com">庆庆的后宫</p>
                     <p class="chenqinqin" data-url="https://www.cctv.com">庆庆的佳丽</p>
                     <p class="chenqinqin" data-url="https://www.zaobao.com/">庆庆的妃子</p>
                 </div>
               </mt-swipe-item>
-              <mt-swipe-item @click.native="tapHandler($event)">
+              <mt-swipe-item @touchstart.native="tapHandler($event)">
                 <div class="a f2">
                     <p class="chenqinqin" data-url="https://www.qq.com">陈总的后宫</p>
                     <p class="chenqinqin" data-url="https://www.163.com">陈总的佳丽</p>
                     <p class="chenqinqin" data-url="https://www.sina.com">陈总的妃子</p>
                 </div>
               </mt-swipe-item>
-              <mt-swipe-item @click.native="tapHandler($event)">
+              <mt-swipe-item @touchstart.native="tapHandler($event)">
                 <div class="a f3">
                     <p class="chenqinqin" data-url="https://www.fenhuang.com">陈老板的后宫</p>
                     <p class="chenqinqin" data-url="https://www.https://developer.mozilla.org/zh-CN/docs/Web/JavaScript.com">陈老板的佳丽</p>
