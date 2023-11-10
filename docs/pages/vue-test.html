@@ -42,23 +42,23 @@
     <div id="app">
         <p>{{a}}</p>
         <mt-button @click.native="handleClick($event)">按钮</mt-button>
-        <div class="swipebox" @touchstart="swipeboxClick($event)">
-        <mt-swipe :auto="400000" @change="swipeChange">
-              <mt-swipe-item  @touchstart.native="tapHandler($event)"> 
+        <div class="swipebox">
+        <mt-swipe :auto="400000">
+              <mt-swipe-item > 
                 <div class="a f1">
                     <p class="chenqinqin" data-url="https://www.baidu.com">庆庆的后宫</p>
                     <p class="chenqinqin" data-url="https://www.cctv.com">庆庆的佳丽</p>
                     <p class="chenqinqin" data-url="https://www.zaobao.com/">庆庆的妃子</p>
                 </div>
               </mt-swipe-item>
-              <mt-swipe-item @touchstart.native="tapHandler($event)">
+              <mt-swipe-item>
                 <div class="a f2">
                     <p class="chenqinqin" data-url="https://www.qq.com">陈总的后宫</p>
                     <p class="chenqinqin" data-url="https://www.163.com">陈总的佳丽</p>
                     <p class="chenqinqin" data-url="https://www.sina.com">陈总的妃子</p>
                 </div>
               </mt-swipe-item>
-              <mt-swipe-item @touchstart.native="tapHandler($event)">
+              <mt-swipe-item>
                 <div class="a f3">
                     <p class="chenqinqin" data-url="https://www.fenhuang.com">陈老板的后宫</p>
                     <p class="chenqinqin" data-url="https://www.https://developer.mozilla.org/zh-CN/docs/Web/JavaScript.com">陈老板的佳丽</p>
@@ -86,25 +86,33 @@
                     window.open(url)
                 }
             },
-            swipeboxClick:function(event){
-                console.log(event)
-                if(event.target.className == 'swipebox'){
-                    //alert(event.target.innerHTML)
-                }
-            },
             clickMe: function(){
                 alert('me')
             },
-            swipeChange: function(){
-                this.$nextTick(function () {
-                    document.querySelector(".swipebox").dispatchEvent(new Event('touchstart'))
-                })
-            }
+            addTap: function(obj, callback) {
+                 let startTime = 0;
+                 let event = null;
+                 obj.addEventListener('touchstart', function (e) {
+                     event = e;
+                     startTime = Date.now();
+                 });
+                 obj.addEventListener('touchend', function (e) {
+                    console.log(Date.now() - startTime)
+                     if (Date.now() - startTime < 100) {
+                         callback && callback(event);
+                         event = null;
+                     }
+                     startTime = 0;
+                 })
+             }
+
           },
           mounted: function () {
             this.$nextTick(function () {
+                let targetDom = document.querySelector(".swipebox");
+                this.addTap(targetDom, this.tapHandler)
                 //document.querySelector(".swipebox").click();
-                document.querySelector(".swipebox").dispatchEvent(new Event('touchstart'))
+                //document.querySelector(".swipebox").dispatchEvent(new Event('touchstart'))
             })
           }
         })
